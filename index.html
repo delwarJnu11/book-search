@@ -12,7 +12,25 @@
 </head>
 
 <body>
+    <!-- Header part start here  -->
+    <header class="container">
+        <h2 class="text-center fs-3 my-3">Search Your Book</h2>
+        <!-- search field and button  -->
+        <div class="d-flex mx-auto w-50">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-input" />
+            <button onclick="loadBooks()" class="btn btn-outline-primary" type="submit" id="search-btn">
+                Search
+            </button>
+        </div>
+    </header>
+    <main>
+        <!-- display books search result here  -->
+        <section class="container my-5">
+            <div id="books-container" class="row row-cols-1 row-cols-md-3 g-4">
 
+            </div>
+        </section>
+    </main>
 
     <!-- bootstrap script  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
