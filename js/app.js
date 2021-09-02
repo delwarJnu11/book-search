@@ -2,13 +2,20 @@
 const loadBooks = async () => {
     const searchInput = document.getElementById('search-input');
     const searchText = searchInput.value;
-    // error handle and fetching data 
+    // error handle  
     if (searchText === '') {
-        document.getElementById('message').innerHTML = `<p class="text-danger text-center fs-4 p-2">Please Input valid book name!</p>`;
+        document.getElementById('message').innerHTML = `<p class="text-danger text-center fs-4 p-2">Please Type a Book Name!</p>`;
         document.getElementById('books-container').innerHTML = '';
     } else {
-        const response = await fetch(`http://openlibrary.org/search.json?q=${searchText}`);
+        //display spinner
+        document.getElementById('spinner').classList.remove('d-none');
+        document.getElementById('books-container').innerHTML = '';
+        document.getElementById('message').innerHTML = '';
+        //fetch data
+        const response = await fetch(`https://openlibrary.org/search.json?q=${searchText}`);
         const data = await response.json();
+        //spinner display none
+        document.getElementById('spinner').classList.add('d-none');
         //clear
         searchInput.value = '';
         document.getElementById('message').innerHTML = '';
@@ -36,7 +43,7 @@ const displayBooks = (books) => {
         newDiv.classList.add('col');
         newDiv.innerHTML = `
             <div class="card h-100">
-                <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="...">
+                <img width="350" height="300" src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h4 class="card-title">${book.title}</h4>
                     <p class="card-text text-danger">${book.author_name[0]}</p>
